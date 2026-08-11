@@ -1,306 +1,878 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shotx Cinematicz</title><link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Shotx Cinematicz</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"><style>
 
-/* ================= LOGIN SYSTEM ================= */
+/* =========================================================
+   SHOTX CINEMATICZ — PROFESSIONAL UI
+   Existing functionality/content preserved
+========================================================= */
 
-.login-btn {
-position: fixed;
-top: 18px;
-right: 18px;
-z-index: 10000;
-padding: 11px 18px;
-border: none;
-border-radius: 50px;
-background: #ffffff;
-color: #111;
-font-family: 'Poppins', sans-serif;
-font-weight: 600;
-cursor: pointer;
-box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+:root{
+    --bg:#07090d;
+    --bg-soft:#0d1118;
+    --card:#11161f;
+    --card-light:#151b25;
+    --white:#ffffff;
+    --muted:#aab1bd;
+    --line:rgba(255,255,255,.09);
+    --accent:#ffffff;
+    --accent-dark:#dfe5ee;
+    --shadow:0 20px 60px rgba(0,0,0,.35);
+    --radius:24px;
 }
 
-.login-btn:hover {
-transform: scale(1.05);
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-.login-overlay {
-display: none;
-position: fixed;
-inset: 0;
-background: rgba(0,0,0,0.75);
-z-index: 20000;
-align-items: center;
-justify-content: center;
-padding: 20px;
+html{
+    scroll-behavior:smooth;
 }
 
-.login-box {
-width: 100%;
-max-width: 390px;
-background: #111;
-color: white;
-padding: 28px 22px;
-border-radius: 22px;
-box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-font-family: 'Poppins', sans-serif;
-position: relative;
+body{
+    font-family:'Poppins',sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%,rgba(255,255,255,.08),transparent 32%),
+        var(--bg);
+    color:var(--white);
+    line-height:1.6;
+    overflow-x:hidden;
 }
 
-.login-box h2 {
-text-align: center;
-margin-bottom: 8px;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:55px 55px;
+    mask-image:linear-gradient(to bottom,black,transparent 75%);
+    z-index:-1;
 }
 
-.login-box p {
-text-align: center;
-font-size: 13px;
-opacity: 0.8;
-margin-bottom: 20px;
+a{
+    -webkit-tap-highlight-color:transparent;
 }
 
-.login-box input {
-width: 100%;
-box-sizing: border-box;
-padding: 13px;
-margin: 7px 0;
-border-radius: 10px;
-border: 1px solid #444;
-background: #222;
-color: white;
-outline: none;
-font-family: 'Poppins', sans-serif;
+img{
+    max-width:100%;
+    display:block;
 }
 
-.login-box input:focus {
-border-color: #fff;
+/* =========================================================
+   GLOBAL SECTION
+========================================================= */
+
+section{
+    width:min(1120px,92%);
+    margin:0 auto 28px;
+    padding:58px clamp(20px,5vw,58px);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
 }
 
-.login-action {
-width: 100%;
-padding: 13px;
-margin-top: 12px;
-border: none;
-border-radius: 12px;
-background: white;
-color: black;
-font-weight: 700;
-font-family: 'Poppins', sans-serif;
-cursor: pointer;
+section::before{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,.025);
+    top:-130px;
+    right:-100px;
+    pointer-events:none;
 }
 
-.close-login {
-position: absolute;
-right: 16px;
-top: 12px;
-font-size: 24px;
-cursor: pointer;
+section h2{
+    font-size:clamp(25px,4vw,38px);
+    line-height:1.2;
+    margin-bottom:16px;
+    letter-spacing:-.7px;
 }
 
-.login-switch {
-margin-top: 15px;
-text-align: center;
-font-size: 13px;
+section p{
+    color:var(--muted);
 }
 
-.login-switch span {
-text-decoration: underline;
-cursor: pointer;
+/* =========================================================
+   HEADER
+========================================================= */
+
+header{
+    min-height:620px;
+    width:100%;
+    padding:130px 20px 90px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(circle at 50% 35%,rgba(255,255,255,.13),transparent 28%),
+        linear-gradient(to bottom,#080a0f 0%,#07090d 65%,var(--bg) 100%);
 }
 
-.password-result {
-display: none;
-margin-top: 18px;
-padding: 15px;
-border-radius: 12px;
-background: rgba(255,255,255,0.1);
-text-align: center;
+header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(transparent 65%,var(--bg)),
+        radial-gradient(circle at center,transparent 20%,rgba(0,0,0,.6) 100%);
+    pointer-events:none;
 }
 
-.password-result strong {
-display: block;
-font-size: 20px;
-margin-top: 7px;
-letter-spacing: 2px;
+header::after{
+    content:"SHOTX CINEMATICZ";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:clamp(70px,14vw,180px);
+    font-weight:800;
+    letter-spacing:10px;
+    white-space:nowrap;
+    color:rgba(255,255,255,.018);
+    pointer-events:none;
 }
 
-.copy-password {
-margin-top: 10px;
-padding: 8px 15px;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-font-weight: 600;
+.logo{
+    position:relative;
+    z-index:2;
+    margin-bottom:28px;
 }
 
-.login-message {
-text-align: center;
-margin-top: 12px;
-font-size: 13px;
+.logo img{
+    width:105px;
+    height:105px;
+    object-fit:cover;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.3);
+    box-shadow:
+        0 0 0 8px rgba(255,255,255,.025),
+        0 20px 50px rgba(0,0,0,.5);
 }
 
-.user-profile {
-display: none;
-position: fixed;
-top: 18px;
-right: 18px;
-z-index: 10000;
-background: white;
-color: #111;
-padding: 8px 13px;
-border-radius: 50px;
-font-family: 'Poppins', sans-serif;
-font-weight: 600;
-box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-align-items: center;
-gap: 8px;
+header h1{
+    position:relative;
+    z-index:2;
+    font-size:clamp(36px,7vw,78px);
+    line-height:1;
+    font-weight:800;
+    letter-spacing:clamp(2px,1vw,9px);
+    margin-bottom:18px;
 }
 
-.logout-btn {
-border: none;
-background: #111;
-color: white;
-padding: 7px 11px;
-border-radius: 20px;
-cursor: pointer;
-font-weight: 600;
+header p{
+    position:relative;
+    z-index:2;
+    color:#b8c0cc;
+    font-size:14px;
+    letter-spacing:5px;
+    text-transform:uppercase;
 }
 
-@media(max-width:600px) {
+/* =========================================================
+   LOGIN SYSTEM
+========================================================= */
 
-.login-btn,
-.user-profile {
-top: 10px;
-right: 10px;
+.login-btn{
+    position:fixed;
+    top:18px;
+    right:18px;
+    z-index:10000;
+    padding:11px 19px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:50px;
+    background:rgba(255,255,255,.92);
+    color:#111;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow:0 10px 35px rgba(0,0,0,.3);
+    transition:.25s ease;
+    backdrop-filter:blur(12px);
 }
 
-.user-profile {
-font-size: 12px;
+.login-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 40px rgba(0,0,0,.4);
 }
 
+.login-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(10px);
+    z-index:20000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-
-/* ================= CHAT SUPPORT ================= */
-
-.chat-support {
-position: fixed;
-right: 18px;
-bottom: 18px;
-z-index: 9999;
-display: flex;
-align-items: center;
-gap: 9px;
-padding: 12px 18px;
-background: #25D366;
-color: white;
-text-decoration: none;
-border-radius: 50px;
-font-family: 'Poppins', sans-serif;
-font-size: 14px;
-font-weight: 600;
-box-shadow: 0 5px 20px rgba(0,0,0,0.30);
-transition: 0.3s;
+.login-box{
+    width:100%;
+    max-width:410px;
+    background:#0e1218;
+    color:white;
+    padding:32px 25px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:25px;
+    box-shadow:0 30px 100px rgba(0,0,0,.7);
+    font-family:'Poppins',sans-serif;
+    position:relative;
 }
 
-.chat-support i {
-font-size: 22px;
+.login-box h2{
+    text-align:center;
+    margin-bottom:8px;
 }
 
-.chat-support:hover {
-transform: scale(1.06);
-box-shadow: 0 7px 25px rgba(0,0,0,0.40);
+.login-box p{
+    text-align:center;
+    font-size:13px;
+    opacity:.75;
+    margin-bottom:20px;
 }
 
-
-/* ================= PURCHASE NOTE ================= */
-
-.purchase-note {
-margin-top: 30px;
-padding: 22px;
-border-radius: 20px;
-background: rgba(255,255,255,0.08);
-border: 2px solid rgba(255,255,255,0.20);
-text-align: left;
-font-family: 'Poppins', sans-serif;
+.login-box input{
+    width:100%;
+    box-sizing:border-box;
+    padding:14px;
+    margin:7px 0;
+    border-radius:12px;
+    border:1px solid #292f39;
+    background:#171c24;
+    color:white;
+    outline:none;
+    font-family:'Poppins',sans-serif;
+    transition:.2s;
 }
 
-.purchase-note h2 {
-text-align: center;
-margin-bottom: 15px;
+.login-box input:focus{
+    border-color:rgba(255,255,255,.65);
+    background:#1b2029;
 }
 
-.purchase-step {
-padding: 12px 0;
-border-bottom: 1px solid rgba(255,255,255,0.15);
+.login-action{
+    width:100%;
+    padding:14px;
+    margin-top:12px;
+    border:none;
+    border-radius:12px;
+    background:#fff;
+    color:#08090b;
+    font-weight:700;
+    font-family:'Poppins',sans-serif;
+    cursor:pointer;
+    transition:.25s;
 }
 
-.purchase-step h3 {
-margin-bottom: 7px;
-font-size: 17px;
+.login-action:hover{
+    transform:translateY(-2px);
 }
 
-.purchase-step p {
-line-height: 1.7;
-margin: 5px 0;
+.close-login{
+    position:absolute;
+    right:17px;
+    top:12px;
+    font-size:25px;
+    cursor:pointer;
+    color:#aaa;
 }
 
-.important-note {
-margin-top: 20px;
-padding: 15px;
-border-radius: 15px;
-background: rgba(255, 193, 7, 0.12);
-border: 1px solid rgba(255, 193, 7, 0.35);
+.login-switch{
+    margin-top:16px;
+    text-align:center;
+    font-size:13px;
+    color:#aaa;
 }
 
-.important-note h3 {
-margin-bottom: 8px;
+.login-switch span{
+    text-decoration:underline;
+    cursor:pointer;
+    color:#fff;
 }
 
-.important-note p {
-line-height: 1.7;
+.password-result{
+    display:none;
+    margin-top:18px;
+    padding:15px;
+    border-radius:14px;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--line);
+    text-align:center;
 }
 
-.thank-you {
-text-align: center;
-margin-top: 22px;
-font-size: 15px;
-line-height: 1.6;
+.password-result strong{
+    display:block;
+    font-size:20px;
+    margin-top:7px;
+    letter-spacing:2px;
 }
 
-@media (max-width:600px) {
-
-.chat-support {
-right: 12px;
-bottom: 12px;
-padding: 11px 15px;
-font-size: 13px;
+.copy-password{
+    margin-top:10px;
+    padding:8px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
 }
 
-.chat-support i {
-font-size: 20px;
+.login-message{
+    text-align:center;
+    margin-top:12px;
+    font-size:13px;
 }
 
-.purchase-note {
-padding: 16px;
-margin-top: 25px;
+.user-profile{
+    display:none;
+    position:fixed;
+    top:18px;
+    right:18px;
+    z-index:10000;
+    background:rgba(255,255,255,.94);
+    color:#111;
+    padding:8px 9px 8px 14px;
+    border-radius:50px;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    box-shadow:0 10px 35px rgba(0,0,0,.3);
+    align-items:center;
+    gap:8px;
 }
 
-.purchase-note h2 {
-font-size: 21px;
+.logout-btn{
+    border:none;
+    background:#111;
+    color:white;
+    padding:7px 11px;
+    border-radius:20px;
+    cursor:pointer;
+    font-weight:600;
 }
 
-.purchase-step h3 {
-font-size: 15px;
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    margin-top:24px;
+    padding:14px 24px;
+    min-height:50px;
+    border-radius:13px;
+    background:#fff;
+    color:#090a0d;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14px;
+    letter-spacing:.2px;
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transition:.25s ease;
 }
 
-.purchase-step p {
-font-size: 14px;
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 40px rgba(0,0,0,.4);
 }
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    text-align:center;
+    padding-top:75px;
+    padding-bottom:75px;
+}
+
+.hero h2{
+    max-width:850px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:clamp(30px,5vw,54px);
+}
+
+.hero p{
+    max-width:760px;
+    margin:0 auto;
+    font-size:16px;
+}
+
+/* =========================================================
+   PREMIUM COURSE
+========================================================= */
+
+.premium-course{
+    text-align:center;
+}
+
+.premium-course h2{
+    font-size:clamp(25px,4vw,38px);
+}
+
+.premium-course h3{
+    font-size:clamp(38px,7vw,70px);
+    letter-spacing:4px;
+    margin:4px 0 10px;
+    font-weight:800;
+}
+
+.premium-course p{
+    max-width:700px;
+    margin:0 auto 28px;
+}
+
+.premium-course img{
+    width:100%;
+    max-height:530px;
+    object-fit:cover;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow:0 25px 60px rgba(0,0,0,.45);
+}
+
+/* =========================================================
+   COURSE DETAILS
+========================================================= */
+
+.course-details{
+    text-align:center;
+}
+
+.course-details > h3{
+    color:#dce2ea;
+    font-size:18px;
+    margin-top:10px;
+}
+
+.course-details > h1{
+    margin:7px 0;
+}
+
+.course-details > h1:last-of-type{
+    font-size:clamp(38px,7vw,62px);
+    letter-spacing:-2px;
+}
+
+.course-details > p{
+    max-width:700px;
+    margin:0 auto 15px;
+    line-height:2;
+}
+
+#timer{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:220px;
+    padding:13px 25px;
+    margin-top:20px;
+    border-radius:12px;
+    background:#080b10;
+    border:1px solid rgba(255,255,255,.12);
+    font-weight:700;
+    letter-spacing:2px;
+    font-variant-numeric:tabular-nums;
+}
+
+/* =========================================================
+   PURCHASE NOTE
+========================================================= */
+
+.purchase-note{
+    margin-top:42px;
+    padding:28px;
+    border-radius:20px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.1);
+    text-align:left;
+    font-family:'Poppins',sans-serif;
+}
+
+.purchase-note h2{
+    text-align:center;
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+.purchase-note > p:first-of-type{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.purchase-step{
+    padding:18px 4px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.purchase-step:last-of-type{
+    border-bottom:none;
+}
+
+.purchase-step h3{
+    margin-bottom:7px;
+    font-size:16px;
+    color:#fff;
+}
+
+.purchase-step p{
+    line-height:1.8;
+}
+
+.important-note{
+    margin-top:22px;
+    padding:18px;
+    border-radius:15px;
+    background:rgba(255,193,7,.06);
+    border:1px solid rgba(255,193,7,.22);
+}
+
+.important-note h3{
+    margin-bottom:8px;
+}
+
+.important-note p{
+    line-height:1.7;
+}
+
+.thank-you{
+    text-align:center;
+    margin-top:25px;
+    font-size:15px;
+    line-height:1.7;
+}
+
+/* =========================================================
+   FOUNDER
+========================================================= */
+
+.founder{
+    text-align:center;
+}
+
+.founder-img{
+    width:155px;
+    height:155px;
+    object-fit:cover;
+    border-radius:50%;
+    margin:25px auto 18px;
+    border:3px solid rgba(255,255,255,.75);
+    padding:4px;
+    background:#080a0f;
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
+}
+
+.founder h3{
+    font-size:24px;
+    margin-bottom:3px;
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    text-align:center;
+}
+
+.about p{
+    max-width:780px;
+    margin:0 auto;
+    font-size:16px;
+    line-height:1.9;
+}
+
+/* =========================================================
+   COURSES
+========================================================= */
+
+.courses{
+    text-align:center;
+}
+
+.youtube{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:230px;
+    padding:13px 20px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:12px;
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    transition:.25s;
+}
+
+.youtube:hover{
+    background:#fff;
+    color:#111;
+    transform:translateY(-2px);
+}
+
+/* =========================================================
+   SOCIAL
+========================================================= */
+
+.social{
+    text-align:center;
+}
+
+.social a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-width:245px;
+    padding:13px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.25s;
+}
+
+.social .youtube{
+    background:#111820;
+    color:#fff;
+}
+
+.social .youtube:hover{
+    background:#fff;
+    color:#111;
+}
+
+.social .instagram{
+    background:#111820;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.social .instagram:hover{
+    background:#fff;
+    color:#111;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    width:100%;
+    padding:65px 20px 110px;
+    margin-top:60px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,.08);
+    background:#05070a;
+}
+
+footer h3{
+    font-size:22px;
+    margin-bottom:8px;
+}
+
+footer p{
+    color:#777f8b;
+    font-size:13px;
+    margin:5px 0;
+}
+
+/* =========================================================
+   CHAT SUPPORT
+========================================================= */
+
+.chat-support{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:12px 18px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    box-shadow:0 10px 35px rgba(0,0,0,.35);
+    transition:.3s;
+}
+
+.chat-support i{
+    font-size:21px;
+}
+
+.chat-support:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 40px rgba(0,0,0,.45);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    header{
+        min-height:540px;
+        padding:110px 18px 70px;
+    }
+
+    header h1{
+        font-size:35px;
+        letter-spacing:2px;
+    }
+
+    header p{
+        font-size:11px;
+        letter-spacing:3px;
+    }
+
+    .logo img{
+        width:90px;
+        height:90px;
+    }
+
+    section{
+        width:94%;
+        padding:38px 18px;
+        border-radius:20px;
+        margin-bottom:18px;
+    }
+
+    section h2{
+        font-size:26px;
+    }
+
+    .hero{
+        padding-top:48px;
+        padding-bottom:48px;
+    }
+
+    .hero p{
+        font-size:14px;
+        line-height:1.8;
+    }
+
+    .premium-course h3{
+        font-size:42px;
+        letter-spacing:2px;
+    }
+
+    .premium-course img{
+        border-radius:15px;
+    }
+
+    .course-details > h1:last-of-type{
+        font-size:45px;
+    }
+
+    .purchase-note{
+        padding:18px 15px;
+        margin-top:30px;
+    }
+
+    .purchase-step{
+        padding:15px 0;
+    }
+
+    .purchase-step h3{
+        font-size:14px;
+    }
+
+    .purchase-step p{
+        font-size:13px;
+    }
+
+    .founder-img{
+        width:135px;
+        height:135px;
+    }
+
+    .chat-support{
+        right:12px;
+        bottom:12px;
+        padding:11px 15px;
+        font-size:13px;
+    }
+
+    .chat-support i{
+        font-size:19px;
+    }
+
+    .login-btn{
+        top:10px;
+        right:10px;
+        padding:9px 14px;
+    }
+
+    .user-profile{
+        top:10px;
+        right:10px;
+        font-size:12px;
+    }
+
+}
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media(max-width:390px){
+
+    header h1{
+        font-size:30px;
+    }
+
+    header p{
+        font-size:9px;
+        letter-spacing:2px;
+    }
+
+    .btn{
+        width:100%;
+    }
+
+    .youtube,
+    .social a{
+        width:100%;
+        min-width:0;
+    }
+
+    .chat-support span{
+        display:none;
+    }
+
+    .chat-support{
+        width:48px;
+        height:48px;
+        padding:0;
+        justify-content:center;
+    }
 
 }
 
@@ -313,9 +885,25 @@ font-size: 14px;
 
 <h2 id="loginTitle">👤 Create Account</h2><p id="loginDescription">
 Enter your name and email to create your account.
-</p><!-- REGISTER --><div id="registerForm"><input type="text" id="registerName" placeholder="Enter your name"><input type="email" id="registerEmail" placeholder="Enter your email"><button class="login-action" onclick="createAccount()">
+</p><!-- REGISTER --><div id="registerForm"><input type="text"
+id="registerName"
+placeholder="Enter your name">
+
+<input type="email"
+id="registerEmail"
+placeholder="Enter your email">
+
+<button class="login-action" onclick="createAccount()">
 🚀 Create Account & Login
-</button></div><!-- LOGIN --><div id="loginForm" style="display:none;"><input type="email" id="loginEmail" placeholder="Enter your email"><input type="password" id="loginPassword" placeholder="Enter your password"><button class="login-action" onclick="loginUser()">
+</button></div><!-- LOGIN --><div id="loginForm" style="display:none;"><input type="email"
+id="loginEmail"
+placeholder="Enter your email">
+
+<input type="password"
+id="loginPassword"
+placeholder="Enter your password">
+
+<button class="login-action" onclick="loginUser()">
 🔐 Login
 </button></div><!-- GENERATED PASSWORD --><div id="passwordResult" class="password-result">✅ Your account has been created!
 
@@ -338,8 +926,7 @@ Order Now
 </a></section><!-- ================= PREMIUM COURSE ================= --><section class="premium-course"><h2>🚀 OUR NEW PREMIUM COURSE</h2><h3>SUPER SKILLS</h3><p>
 Learn Professional Video Editing, Cinematic Shooting, Advanced Effects, Color Grading and AI Tools.
 </p><img src="premium-banner.jpg"
-alt="Premium Course"
-style="width:100%;border-radius:20px;">
+alt="Premium Course">
 
 <br><br>
 
@@ -347,8 +934,9 @@ style="width:100%;border-radius:20px;">
 🔥 BUY THIS PREMIUM COURSE NOW
 </a></section><!-- ================= COURSE DETAILS ================= --><section class="course-details" id="course-details"><h2>🎬 PREMIUM VIDEO EDITING COURSE</h2><h3>Special Launch Offer</h3><p>⏳ Offer Ending Soon</p><h1>
 <span style="text-decoration:line-through;">₹999</span>
-</h1><h1>🔥 70% OFF</h1><h1>Only ₹299</h1><p>
-This Premium Course Includes:<br><br>
+</h1><h1>🔥 70% OFF</h1><h1>Only ₹299</h1><p>This Premium Course Includes:
+
+<br><br>
 
 ✅ Professional Video Editing
 
@@ -475,23 +1063,30 @@ class="chat-support">
 
 </a><script src="script.js"></script><!-- ================= PREMIUM COURSE TIMER ================= --><script>
 
-let endTime = new Date().getTime() + (24*60*60*1000);
+let endTime =
+new Date().getTime() + (24*60*60*1000);
 
-let timer = setInterval(function(){
+let timer =
+setInterval(function(){
 
-let now = new Date().getTime();
+let now =
+new Date().getTime();
 
-let distance = endTime - now;
+let distance =
+endTime - now;
 
-let hours = Math.floor(
+let hours =
+Math.floor(
 (distance % (1000*60*60*24))/(1000*60*60)
 );
 
-let minutes = Math.floor(
+let minutes =
+Math.floor(
 (distance % (1000*60*60))/(1000*60)
 );
 
-let seconds = Math.floor(
+let seconds =
+Math.floor(
 (distance % (1000*60))/1000
 );
 
@@ -502,7 +1097,8 @@ if(distance < 0){
 
 clearInterval(timer);
 
-document.getElementById("timer").innerHTML="Offer Expired";
+document.getElementById("timer").innerHTML =
+"Offer Expired";
 
 }
 
@@ -537,7 +1133,8 @@ document.getElementById("loginOverlay").style.display = "none";
 
 function checkAccount() {
 
-let account = localStorage.getItem("shotxUser");
+let account =
+localStorage.getItem("shotxUser");
 
 if(account) {
 
@@ -556,13 +1153,17 @@ showRegisterForm();
 
 function showRegisterForm() {
 
-document.getElementById("registerForm").style.display = "block";
+document.getElementById("registerForm").style.display =
+"block";
 
-document.getElementById("loginForm").style.display = "none";
+document.getElementById("loginForm").style.display =
+"none";
 
-document.getElementById("passwordResult").style.display = "none";
+document.getElementById("passwordResult").style.display =
+"none";
 
-document.getElementById("loginTitle").innerText = "👤 Create Account";
+document.getElementById("loginTitle").innerText =
+"👤 Create Account";
 
 document.getElementById("loginDescription").innerText =
 "Enter your name and email to create your account.";
@@ -570,7 +1171,8 @@ document.getElementById("loginDescription").innerText =
 document.getElementById("switchText").innerText =
 "Already have an account? Login";
 
-document.getElementById("switchText").onclick = showLoginForm;
+document.getElementById("switchText").onclick =
+showLoginForm;
 
 }
 
@@ -579,13 +1181,17 @@ document.getElementById("switchText").onclick = showLoginForm;
 
 function showLoginForm() {
 
-document.getElementById("registerForm").style.display = "none";
+document.getElementById("registerForm").style.display =
+"none";
 
-document.getElementById("loginForm").style.display = "block";
+document.getElementById("loginForm").style.display =
+"block";
 
-document.getElementById("passwordResult").style.display = "none";
+document.getElementById("passwordResult").style.display =
+"none";
 
-document.getElementById("loginTitle").innerText = "🔐 Welcome Back";
+document.getElementById("loginTitle").innerText =
+"🔐 Welcome Back";
 
 document.getElementById("loginDescription").innerText =
 "Enter your email and password to login.";
@@ -593,7 +1199,8 @@ document.getElementById("loginDescription").innerText =
 document.getElementById("switchText").innerText =
 "Create a new account";
 
-document.getElementById("switchText").onclick = showRegisterForm;
+document.getElementById("switchText").onclick =
+showRegisterForm;
 
 }
 
@@ -669,16 +1276,17 @@ return;
 }
 
 
-let password = generatePassword();
+let password =
+generatePassword();
 
 
 let user = {
 
-name: name,
+name:name,
 
-email: email,
+email:email,
 
-password: password
+password:password
 
 };
 
@@ -694,7 +1302,9 @@ localStorage.setItem(
 );
 
 
-currentGeneratedPassword = password;
+currentGeneratedPassword =
+password;
+
 
 document.getElementById("generatedPassword").innerText =
 password;
@@ -835,18 +1445,22 @@ if(loggedIn && accountData) {
 let account =
 JSON.parse(accountData);
 
-loginButton.style.display = "none";
+loginButton.style.display =
+"none";
 
-userProfile.style.display = "flex";
+userProfile.style.display =
+"flex";
 
 userNameDisplay.innerText =
 "👋 " + account.name;
 
 } else {
 
-loginButton.style.display = "block";
+loginButton.style.display =
+"block";
 
-userProfile.style.display = "none";
+userProfile.style.display =
+"none";
 
 }
 
@@ -855,11 +1469,14 @@ userProfile.style.display = "none";
 
 /* PAGE LOAD */
 
-window.addEventListener("load", function() {
+window.addEventListener(
+"load",
+function() {
 
 updateLoginUI();
 
-});
+}
+);
 
 
 /* CLICK OUTSIDE POPUP TO CLOSE */
