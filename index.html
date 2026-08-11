@@ -1,10 +1,341 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Shotx Cinematicz</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"></head><body><header><div class="logo"><img src="logo.png" alt="Shotx Cinematicz"></div><h1>SHOTX CINEMATICZ</h1><p>Visualize To Customize</p></header><section class="hero"><h2>WELCOME TO SHOTX CINEMATICZ</h2><p>
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shotx Cinematicz</title><link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"><style>
+
+/* ================= LOGIN SYSTEM ================= */
+
+.login-btn {
+position: fixed;
+top: 18px;
+right: 18px;
+z-index: 10000;
+padding: 11px 18px;
+border: none;
+border-radius: 50px;
+background: #ffffff;
+color: #111;
+font-family: 'Poppins', sans-serif;
+font-weight: 600;
+cursor: pointer;
+box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+.login-btn:hover {
+transform: scale(1.05);
+}
+
+.login-overlay {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.75);
+z-index: 20000;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+.login-box {
+width: 100%;
+max-width: 390px;
+background: #111;
+color: white;
+padding: 28px 22px;
+border-radius: 22px;
+box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+font-family: 'Poppins', sans-serif;
+position: relative;
+}
+
+.login-box h2 {
+text-align: center;
+margin-bottom: 8px;
+}
+
+.login-box p {
+text-align: center;
+font-size: 13px;
+opacity: 0.8;
+margin-bottom: 20px;
+}
+
+.login-box input {
+width: 100%;
+box-sizing: border-box;
+padding: 13px;
+margin: 7px 0;
+border-radius: 10px;
+border: 1px solid #444;
+background: #222;
+color: white;
+outline: none;
+font-family: 'Poppins', sans-serif;
+}
+
+.login-box input:focus {
+border-color: #fff;
+}
+
+.login-action {
+width: 100%;
+padding: 13px;
+margin-top: 12px;
+border: none;
+border-radius: 12px;
+background: white;
+color: black;
+font-weight: 700;
+font-family: 'Poppins', sans-serif;
+cursor: pointer;
+}
+
+.close-login {
+position: absolute;
+right: 16px;
+top: 12px;
+font-size: 24px;
+cursor: pointer;
+}
+
+.login-switch {
+margin-top: 15px;
+text-align: center;
+font-size: 13px;
+}
+
+.login-switch span {
+text-decoration: underline;
+cursor: pointer;
+}
+
+.password-result {
+display: none;
+margin-top: 18px;
+padding: 15px;
+border-radius: 12px;
+background: rgba(255,255,255,0.1);
+text-align: center;
+}
+
+.password-result strong {
+display: block;
+font-size: 20px;
+margin-top: 7px;
+letter-spacing: 2px;
+}
+
+.copy-password {
+margin-top: 10px;
+padding: 8px 15px;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-weight: 600;
+}
+
+.login-message {
+text-align: center;
+margin-top: 12px;
+font-size: 13px;
+}
+
+.user-profile {
+display: none;
+position: fixed;
+top: 18px;
+right: 18px;
+z-index: 10000;
+background: white;
+color: #111;
+padding: 8px 13px;
+border-radius: 50px;
+font-family: 'Poppins', sans-serif;
+font-weight: 600;
+box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+align-items: center;
+gap: 8px;
+}
+
+.logout-btn {
+border: none;
+background: #111;
+color: white;
+padding: 7px 11px;
+border-radius: 20px;
+cursor: pointer;
+font-weight: 600;
+}
+
+@media(max-width:600px) {
+
+.login-btn,
+.user-profile {
+top: 10px;
+right: 10px;
+}
+
+.user-profile {
+font-size: 12px;
+}
+
+}
+
+
+/* ================= CHAT SUPPORT ================= */
+
+.chat-support {
+position: fixed;
+right: 18px;
+bottom: 18px;
+z-index: 9999;
+display: flex;
+align-items: center;
+gap: 9px;
+padding: 12px 18px;
+background: #25D366;
+color: white;
+text-decoration: none;
+border-radius: 50px;
+font-family: 'Poppins', sans-serif;
+font-size: 14px;
+font-weight: 600;
+box-shadow: 0 5px 20px rgba(0,0,0,0.30);
+transition: 0.3s;
+}
+
+.chat-support i {
+font-size: 22px;
+}
+
+.chat-support:hover {
+transform: scale(1.06);
+box-shadow: 0 7px 25px rgba(0,0,0,0.40);
+}
+
+
+/* ================= PURCHASE NOTE ================= */
+
+.purchase-note {
+margin-top: 30px;
+padding: 22px;
+border-radius: 20px;
+background: rgba(255,255,255,0.08);
+border: 2px solid rgba(255,255,255,0.20);
+text-align: left;
+font-family: 'Poppins', sans-serif;
+}
+
+.purchase-note h2 {
+text-align: center;
+margin-bottom: 15px;
+}
+
+.purchase-step {
+padding: 12px 0;
+border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.purchase-step h3 {
+margin-bottom: 7px;
+font-size: 17px;
+}
+
+.purchase-step p {
+line-height: 1.7;
+margin: 5px 0;
+}
+
+.important-note {
+margin-top: 20px;
+padding: 15px;
+border-radius: 15px;
+background: rgba(255, 193, 7, 0.12);
+border: 1px solid rgba(255, 193, 7, 0.35);
+}
+
+.important-note h3 {
+margin-bottom: 8px;
+}
+
+.important-note p {
+line-height: 1.7;
+}
+
+.thank-you {
+text-align: center;
+margin-top: 22px;
+font-size: 15px;
+line-height: 1.6;
+}
+
+@media (max-width:600px) {
+
+.chat-support {
+right: 12px;
+bottom: 12px;
+padding: 11px 15px;
+font-size: 13px;
+}
+
+.chat-support i {
+font-size: 20px;
+}
+
+.purchase-note {
+padding: 16px;
+margin-top: 25px;
+}
+
+.purchase-note h2 {
+font-size: 21px;
+}
+
+.purchase-step h3 {
+font-size: 15px;
+}
+
+.purchase-step p {
+font-size: 14px;
+}
+
+}
+
+</style></head><body><!-- ================= LOGIN BUTTON ================= --><button id="loginButton" class="login-btn" onclick="openLogin()">
+<i class="fa-solid fa-user"></i> Login
+</button><!-- LOGGED IN PROFILE --><div id="userProfile" class="user-profile">
+<span id="userNameDisplay"></span>
+<button class="logout-btn" onclick="logoutUser()">Logout</button>
+</div><!-- ================= LOGIN POPUP ================= --><div id="loginOverlay" class="login-overlay"><div class="login-box"><span class="close-login" onclick="closeLogin()">×</span>
+
+<h2 id="loginTitle">👤 Create Account</h2><p id="loginDescription">
+Enter your name and email to create your account.
+</p><!-- REGISTER --><div id="registerForm"><input type="text" id="registerName" placeholder="Enter your name"><input type="email" id="registerEmail" placeholder="Enter your email"><button class="login-action" onclick="createAccount()">
+🚀 Create Account & Login
+</button></div><!-- LOGIN --><div id="loginForm" style="display:none;"><input type="email" id="loginEmail" placeholder="Enter your email"><input type="password" id="loginPassword" placeholder="Enter your password"><button class="login-action" onclick="loginUser()">
+🔐 Login
+</button></div><!-- GENERATED PASSWORD --><div id="passwordResult" class="password-result">✅ Your account has been created!
+
+<div>Your automatic password is:</div><strong id="generatedPassword"></strong>
+
+<button class="copy-password" onclick="copyPassword()">
+📋 Copy Password
+</button><p style="margin-top:10px;margin-bottom:0;">
+⚠️ Save this password. You will need it after logout.
+</p></div><div id="loginMessage" class="login-message"></div><div class="login-switch"><span id="switchText" onclick="showLoginForm()">
+Already have an account? Login
+</span></div></div>
+</div><!-- ================= HEADER ================= --><header><div class="logo">
+<img src="logo.png" alt="Shotx Cinematicz">
+</div><h1>SHOTX CINEMATICZ</h1><p>Visualize To Customize</p></header><!-- ================= HERO ================= --><section class="hero"><h2>WELCOME TO SHOTX CINEMATICZ</h2><p>
 Shotx Cinematicz is a professional video production company dedicated to creating cinematic videos, premium editing, reels, music videos and creative visual content.
-</p><a href="tel:9835778346" class="btn"><i class="fa-solid fa-phone"></i>
-
+</p><a href="tel:9835778346" class="btn">
+<i class="fa-solid fa-phone"></i>
 Order Now
-
-</a></section><!-- PREMIUM COURSE SECTION --><section class="premium-course"><h2>🚀 OUR NEW PREMIUM COURSE</h2><h3>SUPER SKILLS</h3><p>
+</a></section><!-- ================= PREMIUM COURSE ================= --><section class="premium-course"><h2>🚀 OUR NEW PREMIUM COURSE</h2><h3>SUPER SKILLS</h3><p>
 Learn Professional Video Editing, Cinematic Shooting, Advanced Effects, Color Grading and AI Tools.
 </p><img src="premium-banner.jpg"
 alt="Premium Course"
@@ -12,19 +343,12 @@ style="width:100%;border-radius:20px;">
 
 <br><br>
 
-<a href="#course-details" class="btn">🔥 BUY THIS PREMIUM COURSE NOW
-
-</a></section><!-- COURSE DETAILS --><section class="course-details" id="course-details"><h2>🎬 PREMIUM VIDEO EDITING COURSE</h2><h3>Special Launch Offer</h3><p>
-⏳ Offer Ending Soon
-</p><h1><span style="text-decoration:line-through;">₹999</span>
-
-</h1><h1>
-🔥 70% OFF
-</h1><h1>
-Only ₹299
-</h1><p>This Premium Course Includes:
-
-<br><br>
+<a href="#course-details" class="btn">
+🔥 BUY THIS PREMIUM COURSE NOW
+</a></section><!-- ================= COURSE DETAILS ================= --><section class="course-details" id="course-details"><h2>🎬 PREMIUM VIDEO EDITING COURSE</h2><h3>Special Launch Offer</h3><p>⏳ Offer Ending Soon</p><h1>
+<span style="text-decoration:line-through;">₹999</span>
+</h1><h1>🔥 70% OFF</h1><h1>Only ₹299</h1><p>
+This Premium Course Includes:<br><br>
 
 ✅ Professional Video Editing
 
@@ -38,18 +362,18 @@ Only ₹299
 
 <br>✅ Social Media Content Creation
 
-</p><div id="timer">00 : 00 : 00 : 00
-
+</p><div id="timer">
+00 : 00 : 00 : 00
 </div><br><a href="https://rzp.io/rzp/l4cStbNU"
 class="btn"
 target="_blank">
 
 💳 BUY NOW ₹299
 
-</a><!-- COURSE PURCHASE PROCESS --><div class="purchase-note"><h2>📌 COURSE PURCHASE PROCESS</h2><p>
+</a><!-- ================= PURCHASE PROCESS ================= --><div class="purchase-note"><h2>📌 COURSE PURCHASE PROCESS</h2><p>
 Course खरीदने के लिए नीचे दिए गए सभी steps को ध्यान से follow करें 👇
 </p><div class="purchase-step"><h3>STEP 1️⃣ — BUY NOW पर क्लिक करें</h3><p>
-सबसे पहले ऊपर दिए गए <b>“💳 BUY NOW ₹299”</b> बटन पर क्लिक करें।
+सबसे पहले ऊपर दिए गए <b>“💳 BUY NOW ₹299”</b> button पर क्लिक करें।
 </p></div><div class="purchase-step"><h3>STEP 2️⃣ — PAYMENT करें</h3><p>
 Payment page खुलने के बाद ₹299 का payment करें।
 आप उपलब्ध payment method से payment कर सकते हैं।
@@ -63,14 +387,11 @@ Screenshot में <b>Transaction ID / Payment ID</b> साफ दिखा�
 इसके बाद हमारा WhatsApp Group खुलेगा।
 </p></div><div class="purchase-step"><h3>STEP 6️⃣ — PAYMENT PROOF भेजें</h3><p>
 WhatsApp Group में अपना payment screenshot भेजें और साथ में ये details लिखें:
-</p><p>👤 <b>नाम:</b><br>
-
+</p><p>
+👤 <b>नाम:</b><br>
 📧 <b>Email:</b><br>
-
 📱 <b>Mobile Number:</b><br>
-
 🧾 <b>Transaction ID / Payment ID:</b>
-
 </p></div><div class="purchase-step"><h3>STEP 7️⃣ — PAYMENT VERIFY होगा ✅</h3><p>
 हम आपकी payment details verify करेंगे।
 कृपया verification के दौरान थोड़ा समय दें।
@@ -86,15 +407,15 @@ Payment करने के बाद अपना payment screenshot और Tra
 
 Learn • Create • Edit • Grow 🚀
 
-</p></div></section><section class="founder"><h2>Founder Of This Company</h2><img src="founder.jpg"
+</p></div></section><!-- ================= FOUNDER ================= --><section class="founder"><h2>Founder Of This Company</h2><img src="founder.jpg"
 alt="Founder"
 class="founder-img">
 
 <h3>Sarwesh Kumar</h3><p>
 Founder & CEO of Shotx Cinematicz
-</p></section><section class="about"><h2>About Us</h2><p>
+</p></section><!-- ================= ABOUT ================= --><section class="about"><h2>About Us</h2><p>
 Shotx Cinematicz is a creative media company based in Jharkhand. We specialize in professional video shoots, cinematic editing, social media content creation and creative visual storytelling.
-</p></section><section class="courses"><h2>View Courses</h2><p>
+</p></section><!-- ================= COURSES ================= --><section class="courses"><h2>View Courses</h2><p>
 Learn Professional Video Editing For Free.
 </p><a class="youtube"
 href="https://youtu.be/RZ6WxRgY5K0?si=xp0podjTrWfMSN6J"
@@ -120,13 +441,13 @@ target="_blank">
 
 </a><br><br>
 
-<a href="https://youtube.com/@shotxproduction?si=EDkGk7SP-RhdNSbr"
+<a href="https://youtube.com/@shotxproduction?si=EDkGg7SP-RhdNSbr"
 class="btn"
 target="_blank">
 
 📚 Course Channel
 
-</a></section><section class="social"><h2>Follow Us</h2><a class="youtube"
+</a></section><!-- ================= SOCIAL ================= --><section class="social"><h2>Follow Us</h2><a class="youtube"
 href="https://youtube.com/@shotxcinematicz-sarwesh?si=M0bqkinS-5zSV7PD"
 target="_blank">
 
@@ -144,7 +465,7 @@ target="_blank">
 
 Follow On Instagram
 
-</a></section><footer><h3>Shotx Cinematicz</h3><p>Visualize To Customize</p><p>Founder: Sarwesh Kumar</p><p>📞 9835778346</p><p>© 2026 Shotx Cinematicz. All Rights Reserved.</p></footer><!-- FLOATING WHATSAPP CHAT SUPPORT --><a href="https://chat.whatsapp.com/K6zAfFVYBxzE3uSorHAT8m"
+</a></section><!-- ================= FOOTER ================= --><footer><h3>Shotx Cinematicz</h3><p>Visualize To Customize</p><p>Founder: Sarwesh Kumar</p><p>📞 9835778346</p><p>© 2026 Shotx Cinematicz. All Rights Reserved.</p></footer><!-- ================= WHATSAPP ================= --><a href="https://chat.whatsapp.com/K6zAfFVYBxzE3uSorHAT8m"
 target="_blank"
 class="chat-support">
 
@@ -152,7 +473,7 @@ class="chat-support">
 
 <span>Chat Support</span>
 
-</a><script src="script.js"></script><!-- PREMIUM COURSE TIMER --><script>
+</a><script src="script.js"></script><!-- ================= PREMIUM COURSE TIMER ================= --><script>
 
 let endTime = new Date().getTime() + (24*60*60*1000);
 
@@ -175,7 +496,6 @@ let seconds = Math.floor(
 );
 
 document.getElementById("timer").innerHTML =
-
 "⏳ " + hours + " : " + minutes + " : " + seconds;
 
 if(distance < 0){
@@ -188,211 +508,373 @@ document.getElementById("timer").innerHTML="Offer Expired";
 
 },1000);
 
-</script><script type="module" src="firebase.js"></script><!-- CHAT SUPPORT BUTTON STYLE --><style>
+</script><!-- ================= LOGIN SYSTEM JAVASCRIPT ================= --><script>
 
-.chat-support {
+let currentGeneratedPassword = "";
 
-position: fixed;
 
-right: 18px;
+/* OPEN LOGIN */
 
-bottom: 18px;
+function openLogin() {
 
-z-index: 9999;
+document.getElementById("loginOverlay").style.display = "flex";
 
-display: flex;
-
-align-items: center;
-
-gap: 9px;
-
-padding: 12px 18px;
-
-background: #25D366;
-
-color: white;
-
-text-decoration: none;
-
-border-radius: 50px;
-
-font-family: 'Poppins', sans-serif;
-
-font-size: 14px;
-
-font-weight: 600;
-
-box-shadow: 0 5px 20px rgba(0,0,0,0.30);
-
-transition: 0.3s;
-
-}
-
-.chat-support i {
-
-font-size: 22px;
-
-}
-
-.chat-support:hover {
-
-transform: scale(1.06);
-
-box-shadow: 0 7px 25px rgba(0,0,0,0.40);
+checkAccount();
 
 }
 
 
-@media (max-width: 600px) {
+/* CLOSE LOGIN */
 
-.chat-support {
+function closeLogin() {
 
-right: 12px;
-
-bottom: 12px;
-
-padding: 11px 15px;
-
-font-size: 13px;
+document.getElementById("loginOverlay").style.display = "none";
 
 }
 
-.chat-support i {
 
-font-size: 20px;
+/* CHECK EXISTING ACCOUNT */
+
+function checkAccount() {
+
+let account = localStorage.getItem("shotxUser");
+
+if(account) {
+
+showLoginForm();
+
+} else {
+
+showRegisterForm();
 
 }
 
 }
 
 
-/* PURCHASE NOTE */
+/* SHOW REGISTER */
 
-.purchase-note {
+function showRegisterForm() {
 
-margin-top: 30px;
+document.getElementById("registerForm").style.display = "block";
 
-padding: 22px;
+document.getElementById("loginForm").style.display = "none";
 
-border-radius: 20px;
+document.getElementById("passwordResult").style.display = "none";
 
-background: rgba(255,255,255,0.08);
+document.getElementById("loginTitle").innerText = "👤 Create Account";
 
-border: 2px solid rgba(255,255,255,0.20);
+document.getElementById("loginDescription").innerText =
+"Enter your name and email to create your account.";
 
-text-align: left;
+document.getElementById("switchText").innerText =
+"Already have an account? Login";
 
-font-family: 'Poppins', sans-serif;
-
-}
-
-
-.purchase-note h2 {
-
-text-align: center;
-
-margin-bottom: 15px;
+document.getElementById("switchText").onclick = showLoginForm;
 
 }
 
 
-.purchase-step {
+/* SHOW LOGIN */
 
-padding: 12px 0;
+function showLoginForm() {
 
-border-bottom: 1px solid rgba(255,255,255,0.15);
+document.getElementById("registerForm").style.display = "none";
 
-}
+document.getElementById("loginForm").style.display = "block";
 
+document.getElementById("passwordResult").style.display = "none";
 
-.purchase-step h3 {
+document.getElementById("loginTitle").innerText = "🔐 Welcome Back";
 
-margin-bottom: 7px;
+document.getElementById("loginDescription").innerText =
+"Enter your email and password to login.";
 
-font-size: 17px;
+document.getElementById("switchText").innerText =
+"Create a new account";
 
-}
-
-
-.purchase-step p {
-
-line-height: 1.7;
-
-margin: 5px 0;
+document.getElementById("switchText").onclick = showRegisterForm;
 
 }
 
 
-.important-note {
+/* GENERATE PASSWORD */
 
-margin-top: 20px;
+function generatePassword() {
 
-padding: 15px;
+let chars =
+"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
-border-radius: 15px;
+let password = "";
 
-background: rgba(255, 193, 7, 0.12);
+for(let i = 0; i < 10; i++) {
 
-border: 1px solid rgba(255, 193, 7, 0.35);
+password += chars.charAt(
+Math.floor(Math.random() * chars.length)
+);
+
+}
+
+return password;
 
 }
 
 
-.important-note h3 {
+/* CREATE ACCOUNT */
 
-margin-bottom: 8px;
+function createAccount() {
 
-}
+let name =
+document.getElementById("registerName").value.trim();
+
+let email =
+document.getElementById("registerEmail").value.trim().toLowerCase();
+
+let message =
+document.getElementById("loginMessage");
 
 
-.important-note p {
+if(name === "" || email === "") {
 
-line-height: 1.7;
+message.innerText =
+"⚠️ Please enter your name and email.";
 
-}
-
-
-.thank-you {
-
-text-align: center;
-
-margin-top: 22px;
-
-font-size: 15px;
-
-line-height: 1.6;
+return;
 
 }
 
 
-@media (max-width: 600px) {
+if(!email.includes("@")) {
 
-.purchase-note {
+message.innerText =
+"⚠️ Please enter a valid email.";
 
-padding: 16px;
-
-margin-top: 25px;
-
-}
-
-.purchase-note h2 {
-
-font-size: 21px;
+return;
 
 }
 
-.purchase-step h3 {
 
-font-size: 15px;
+let existingAccount =
+localStorage.getItem("shotxUser");
+
+if(existingAccount) {
+
+message.innerText =
+"⚠️ Account already exists. Please login.";
+
+showLoginForm();
+
+return;
 
 }
 
-.purchase-step p {
 
-font-size: 14px;
+let password = generatePassword();
+
+
+let user = {
+
+name: name,
+
+email: email,
+
+password: password
+
+};
+
+
+localStorage.setItem(
+"shotxUser",
+JSON.stringify(user)
+);
+
+localStorage.setItem(
+"shotxLoggedIn",
+"true"
+);
+
+
+currentGeneratedPassword = password;
+
+document.getElementById("generatedPassword").innerText =
+password;
+
+document.getElementById("passwordResult").style.display =
+"block";
+
+document.getElementById("registerForm").style.display =
+"none";
+
+document.getElementById("loginMessage").innerText =
+"✅ Account created successfully!";
+
+updateLoginUI();
+
+}
+
+
+/* COPY PASSWORD */
+
+function copyPassword() {
+
+if(!currentGeneratedPassword) return;
+
+navigator.clipboard.writeText(
+currentGeneratedPassword
+);
+
+document.querySelector(".copy-password").innerText =
+"✅ Copied!";
+
+setTimeout(function(){
+
+document.querySelector(".copy-password").innerText =
+"📋 Copy Password";
+
+},2000);
+
+}
+
+
+/* LOGIN */
+
+function loginUser() {
+
+let email =
+document.getElementById("loginEmail").value.trim().toLowerCase();
+
+let password =
+document.getElementById("loginPassword").value.trim();
+
+let message =
+document.getElementById("loginMessage");
+
+let accountData =
+localStorage.getItem("shotxUser");
+
+
+if(!accountData) {
+
+message.innerText =
+"⚠️ Account not found. Please create an account.";
+
+return;
+
+}
+
+
+let account =
+JSON.parse(accountData);
+
+
+if(email === account.email &&
+password === account.password) {
+
+localStorage.setItem(
+"shotxLoggedIn",
+"true"
+);
+
+message.innerText =
+"✅ Login successful!";
+
+updateLoginUI();
+
+setTimeout(function(){
+
+closeLogin();
+
+},800);
+
+} else {
+
+message.innerText =
+"❌ Incorrect email or password.";
 
 }
 
 }
 
-</style></body></html>
+
+/* LOGOUT */
+
+function logoutUser() {
+
+localStorage.setItem(
+"shotxLoggedIn",
+"false"
+);
+
+updateLoginUI();
+
+}
+
+
+/* UPDATE LOGIN UI */
+
+function updateLoginUI() {
+
+let loggedIn =
+localStorage.getItem("shotxLoggedIn") === "true";
+
+let accountData =
+localStorage.getItem("shotxUser");
+
+let loginButton =
+document.getElementById("loginButton");
+
+let userProfile =
+document.getElementById("userProfile");
+
+let userNameDisplay =
+document.getElementById("userNameDisplay");
+
+
+if(loggedIn && accountData) {
+
+let account =
+JSON.parse(accountData);
+
+loginButton.style.display = "none";
+
+userProfile.style.display = "flex";
+
+userNameDisplay.innerText =
+"👋 " + account.name;
+
+} else {
+
+loginButton.style.display = "block";
+
+userProfile.style.display = "none";
+
+}
+
+}
+
+
+/* PAGE LOAD */
+
+window.addEventListener("load", function() {
+
+updateLoginUI();
+
+});
+
+
+/* CLICK OUTSIDE POPUP TO CLOSE */
+
+document.getElementById("loginOverlay").addEventListener(
+"click",
+function(event) {
+
+if(event.target === this) {
+
+closeLogin();
+
+}
+
+});
+
+</script></body>
+  </html>
